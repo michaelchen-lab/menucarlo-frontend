@@ -8,7 +8,7 @@ const SimulationHistCard = ({graphData}) => {
 
     return (
         <>
-            <p className="pl-2 mb-4 text-left border-l-4 border-blue-500">Daily Profit Distribution</p>
+            <p className="pl-2 mb-4 text-left border-l-4 border-blue-500">Distribution of Daily Profit</p>
             <ResponsiveContainer aspect={graphAspect} width="100%" height="100%">
                 <BarChart data={graphData} margin={{ top: 20, right: 20, left: 20, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" />

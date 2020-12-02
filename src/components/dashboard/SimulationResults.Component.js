@@ -38,7 +38,10 @@ const SimulationResults = ({statement, baseStats, adjustedStats}) => {
                 >
                     <XAxis type="number" tickFormatter={(num) => "$"+num}/>
                     <YAxis type="category" dataKey="name"/>
-                    <Tooltip />
+                    <Tooltip
+                        formatter={(value,name,props) => "$"+value.toString()}
+                        labelFormatter={(x) => ""}
+                    />
 
                     <Bar dataKey="Avg. Daily Profit" maxBarSize={25}>
                         {

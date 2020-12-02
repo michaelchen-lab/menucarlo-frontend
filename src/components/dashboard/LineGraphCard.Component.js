@@ -14,7 +14,7 @@ const LineGraphCard = ({title, graphData}) => {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="x" />
                     <YAxis tick={{dx: -15}} tickFormatter={(num) => "$"+num}/>
-                    <Tooltip />
+                    <Tooltip formatter={(value,name,props) => "$"+value.toString()}/>
                     <Area
                         type="monotone" dataKey="Revenue" isAnimationActive={true}
                         stroke="#3B82F6" strokeWidth={1.5} fill="#BFDBFE" />
