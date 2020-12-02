@@ -84,6 +84,7 @@
             }
         },
         "simulation": {
+            "statement": "The daily profit range increased from $287.11 - $315.81 to $300.18 - $342.40. We expect a 6.57% increase in profit margin after menu engineering.",
             "base": {
                 "average_profit": "$301.46",
                 "standard_deviation": "14.35",
@@ -105,9 +106,7 @@
                     "$389": 0.0,
                     "$398": 1.0,
                     "$408": 0.0,
-                    "$417": 0.0,
-                    "$427": 0.0,
-                    "$436": 0.0
+                    ">$408": 0.0
                 }
             },
             "adjusted": {
@@ -131,9 +130,7 @@
                     "$389": 20.0,
                     "$398": 16.0,
                     "$408": 9.0,
-                    "$417": 1.0,
-                    "$427": 0.0,
-                    "$436": 1.0
+                    ">$408": 2.0
                 }
             },
             "parameters": [
@@ -348,7 +345,7 @@
                         "$2.55"
                     ]
                 ],
-                "plowhorse": [
+                "plowhorses": [
                     [
                         "MUDD-SLIDE COOKIE",
                         "$1216.00",
