@@ -12,6 +12,11 @@ createTheme("itemsTable", {
 })
 
 const customStyles = {
+    tableWrapper: {
+        style: {
+            display: 'block',
+        },
+    },
     headRow: {
         style: {
             borderBottomColor: "#3B82F6",
@@ -25,6 +30,7 @@ const customStyles = {
     },
     rows: {
         style: {
+            fontSize: "14px",
             '&:not(:last-of-type)': {
                 borderBottomWidth: '0px',
             },
@@ -36,9 +42,11 @@ const TableCard = ({title, columns, data, filter, sort}) => {
     const [option, setOption] = useState(filter.options[0])
     const [rawTableData, setRawTableData] = useState(data)
     const [showTableData, setShowTableData] = useState(null)
+    let device = "desktop"
+    if (window.innerWidth < 640) device = "mobile"
+    console.log(device)
 
     useEffect(() => {
-        console.log('changing showtabledata')
         if (option === "All Items") setShowTableData([...rawTableData])
         else {
             let newShowTableData = rawTableData.filter(row => row.type === option.toLowerCase())
@@ -62,16 +70,15 @@ const TableCard = ({title, columns, data, filter, sort}) => {
             else newRawTableData.sort((row1, row2) => (parseFloat(row2[column.selector].substring(1)) - parseFloat(row1[column.selector].substring(1))))
         }
         setRawTableData(newRawTableData)
-        console.log(column)
-        console.log(sortDirection)
-        console.log(JSON.stringify(newRawTableData.slice(0,2)))
     }
 
     if (!showTableData) return <p>Loading...</p>
 
+    if (device === "mobile") return null
+
     return (
         <>
-            <div className="grid sm:grid-cols-4 lg:grid-cols-6">
+            <div className="grid sm:grid-cols-4 lg:grid-cols-6 pb-4">
                 <div className="sm:col-span-3 lg:col-span-5">
                     <p className="inline pl-2 mb-4 text-left border-l-4 border-blue-500">{title}</p>
                 </div>
@@ -86,12 +93,15 @@ const TableCard = ({title, columns, data, filter, sort}) => {
                     </select>
                 </div>
             </div>
-            <DataTable
-                columns={columns} data={showTableData}
-                noHeader={true} pagination={true} striped={true}
-                theme="itemsTable" customStyles={customStyles}
-                sortServer={true} onSort={handleSort}
-            />
+            <div className="w-100">
+                <DataTable
+                    columns={columns} data={showTableData}
+                    noHeader={true} pagination={true} striped={true}
+                    responsive={true}
+                    theme="itemsTable" customStyles={customStyles}
+                    sortServer={true} onSort={handleSort}
+                />
+            </div>
         </>
     )
 }

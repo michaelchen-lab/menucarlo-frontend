@@ -1,6 +1,6 @@
 import React from "react"
 
-const Sidebar = ({name, allPeriods, setPeriod, menu, setMenu}) => {
+const Sidebar = ({name, allPeriods, currentPeriod, setPeriod, menu, setMenu}) => {
 
     const changeFocus = (itemName) => {
         let newMenu = [...menu]
@@ -12,14 +12,13 @@ const Sidebar = ({name, allPeriods, setPeriod, menu, setMenu}) => {
     }
 
     const base_menu_css = "appearance-none min-w-full py-2 pl-2 font-medium"
-    // <p className="pb-4 text-3xl font-bold text-center">Dashboard</p>
     return (
         <div className="px-4 pb-2">
 
 
             <select
                 className="min-w-full border-2 border-blue-300 hover:border-blue-500 rounded py-2 pl-2 mb-4 cursor-pointer"
-                onChange={(e) => setPeriod(e.target.value)}
+                onChange={(e) => setPeriod(e.target.value)} value={currentPeriod}
             >
                 { allPeriods.map(period => (
                     <option value={period} key={period}>{period}</option>

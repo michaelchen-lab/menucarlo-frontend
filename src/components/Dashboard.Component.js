@@ -44,35 +44,50 @@ const Dashboard = () => {
         }
     }, [menu])
 
-    // When period is changed by user, unavailable menu items must be disabled.
     useEffect(() => {
         if (Object.keys(userData).length === 0) return
 
+        // Unavailable menu items must be disabled.
         let newMenu = [...menu]
         for (const item of newMenu) {
             console.log(userData)
-            if (Object.keys(userData[name][period][item.name.toLowerCase()]).length === 0) item.disabled = true
+            if (Object.keys(userData[name][period][item.name.toLowerCase()]).length === 0) {
+                item.disabled = true
+                item.inFocus = false
+            }
             else item.disabled = false
         }
-        console.log(newMenu)
+        // If no items are inFocus:
+        if (newMenu.filter(item => item.inFocus === true).length === 0) {
+            for (const item of newMenu) {
+                if (item.disabled === false) {
+                    item.inFocus = true
+                    break
+                }
+            }
+        }
         setMenu(newMenu)
     }, [period])
 
-    if (!(name in userData) || (period === null)) return <p>Loading</p>
+    if (!(name in userData) || (period === null)) return <p>Loading...</p>
+
+    if (Object.keys(userData[name][period][show.toLowerCase()]).length === 0) return <p>Loading...</p>
 
     return (
         <div className="pt-5 grid sm:grid-cols-4 lg:grid-cols-6">
             <div className="sm:col-span-1 lg:col-span-1">
                 <Sidebar
                     name={name}
-                    allPeriods={Object.keys(userData[name])} setPeriod={setPeriod}
+                    allPeriods={Object.keys(userData[name])} currentPeriod={period} setPeriod={setPeriod}
                     menu={menu} setMenu={setMenu}
                 />
             </div>
             <div className="sm:col-span-3 lg:col-span-5">
                 {(show === "Analytics") ? (
                     <AnalyticsDash data={userData[name][period].analytics} />
-                ) : <SimulationDash data={userData[name][period].simulation} />}
+                ) :
+                    <SimulationDash data={userData[name][period].simulation} />
+                }
             </div>
         </div>
     )
