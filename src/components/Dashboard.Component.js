@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react"
 import { useParams } from "react-router-dom"
+import axios from "axios"
 
 import { DataContext } from "../contexts/Data.Context"
 import Sidebar from "./Sidebar.Component.js"
@@ -9,14 +10,18 @@ import SimulationDash from "./dashboard/SimulationDash.Component"
 import AnalyticsData from "../data/data.json"
 
 const Dashboard = () => {
-    let { name } = useParams()
-    const [period, setPeriod] = useState(null)
+    let { name } = "test"
+    const [period, setPeriod] = useState()
     const [menu, setMenu] = useState([
         {name: "Analytics", inFocus: true, disabled: false},
         {name: "Simulation", inFocus: false, disabled: false},
     ])
-    const [show, setShow] = useState(null)
+    const [show, setShow] = useState(null) // Analytics or Simulation
     const { userData, dispatch } = useContext(DataContext)
+
+    const [periodData, setPeriodData] = useState()
+    const {token, setToken, updateToken} = UseToken()
+    const { decodedToken, isExpired } = useJwt(token)
 
     // Import Data: Similar to componentDidMount
     useEffect(() => {
@@ -29,7 +34,20 @@ const Dashboard = () => {
                 data: AnalyticsData
             })
         }
-    })
+    }, [period])
+
+    useEffect(() => {
+        if (isExpired) {
+            updateToken().then(() => console.log('done'))
+        } else {
+            return true
+        }
+    }, [])
+
+    useEffect(() => {
+
+        axios.get()
+    }, [period])
 
     // Set a default period to show
     useEffect(() => {
