@@ -46,6 +46,11 @@ const getTableData = (rawData) => {
 }
 
 const SimulationDash = ({data}) => {
+
+    if (!data) return <h1></h1>
+
+    if (!('statement' in data)) return <h1></h1>
+
     return (
         <div className="grid sm:grid-cols-9 px-4">
             <div className="sm:col-span-5">
@@ -63,23 +68,24 @@ const SimulationDash = ({data}) => {
             <div className="sm:col-span-9 pt-4">
                 <SimulationHistCard graphData={generateGraphData(data.base.data, data.adjusted.data)} />
             </div>
-            <div className="sm:col-span-9 pt-4">
-                <TableCard
-                    title="Menu Items" columns={tableColumns}
-                    data={getTableData(data.table)}
-                    filter={{
-                        name: "type",
-                        options: ["All Items", "Stars", "Plowhorses", "Dogs", "Puzzles"]
-                    }}
-                    sort={{
-                        text: ["cost", "itemName"],
-                        number: ["quantitySold"],
-                        currency: ["totalTakings", "unitProfit", "profit"]
-                    }}
-                />
-            </div>
         </div>
     )
 }
 
 export default SimulationDash
+
+// <div className="sm:col-span-9 pt-4">
+//     <TableCard
+//         title="Menu Items" columns={tableColumns}
+//         data={getTableData(data.table)}
+//         filter={{
+//             name: "type",
+//             options: ["All Items", "Stars", "Plowhorses", "Dogs", "Puzzles"]
+//         }}
+//         sort={{
+//             text: ["cost", "itemName"],
+//             number: ["quantitySold"],
+//             currency: ["totalTakings", "unitProfit", "profit"]
+//         }}
+//     />
+// </div>

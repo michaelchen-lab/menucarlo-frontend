@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import Loader from 'react-loader-spinner'
 
 import { AuthContext } from "../contexts/Auth.Context"
 
@@ -9,9 +10,11 @@ const PrivateRoute = ({component: Component, ...rest}) => {
 
     if (auth.loading) {
         return (
-            <Route {...rest} render={() => {
-                return <p>Loading...</p>;
-            }} />
+            <Route {...rest} render={() => (
+                <div className="py-4 px-4">
+                    <Loader type="TailSpin" color="rgba(59, 130, 246)" height={50} width={50} />
+                </div>
+            )} />
         )
     }
 

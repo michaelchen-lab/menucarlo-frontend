@@ -4,7 +4,7 @@ import axios from "axios"
 export const AuthContext = createContext()
 
 const AuthContextProvider = (props) => {
-    const [auth, setAuth] = useState({ loading: true, isAuthenticated: false, tokens: null })
+    const [auth, setAuth] = useState({ loading: false, isAuthenticated: false, tokens: null })
 
     useEffect(() => {
         console.log('starting')
@@ -32,12 +32,11 @@ const AuthContextProvider = (props) => {
     const getNewAccessToken = async () => {
         let accessToken = null
 
-        await axios.post('http://menu-carlo.herokuapp.com/api/accounts/token/refresh/', {
+        await axios.post('https://menu-carlo.herokuapp.com/api/accounts/token/refresh/', {
             refresh: auth.tokens.refresh
         }, { headers: { "Content-Type": "application/json" } })
         .then(res => {
             console.log('new access token extracted')
-            console.log(res.data.access)
             setAuth({...auth, tokens: {
                 refresh: auth.tokens.refresh,
                 access: res.data.access
@@ -52,7 +51,7 @@ const AuthContextProvider = (props) => {
     const validateRefreshToken = async (tokens) => {
         let isValid = null
 
-        await axios.post('http://menu-carlo.herokuapp.com/api/accounts/token/verify/',{
+        await axios.post('https://menu-carlo.herokuapp.com/api/accounts/token/verify/',{
             token: tokens.refresh
         }, { headers: { "Content-Type": "application/json" } })
         .then((res) => {
@@ -70,7 +69,7 @@ const AuthContextProvider = (props) => {
     const getAccessToken = async () => {
         let accessToken = null
 
-        await axios.post('http://menu-carlo.herokuapp.com/api/accounts/token/verify/',{
+        await axios.post('https://menu-carlo.herokuapp.com/api/accounts/token/verify/',{
             token: auth.tokens.access
         }, { headers: { "Content-Type": "application/json" } })
         .then(res => {

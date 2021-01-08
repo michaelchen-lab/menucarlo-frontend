@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import {
-  BrowserRouter as Router, Switch, Route, Link
+  BrowserRouter as Router, Switch, Route
 } from "react-router-dom";
 
-import axios from "axios"
-
-import DataContextProvider from "./contexts/Data.Context"
 import AuthContextProvider from "./contexts/Auth.Context"
 import PrivateRoute from "./utils/PrivateRoute"
 import Login from "./components/Login.Component"
@@ -18,10 +15,8 @@ function App() {
         <Router>
             <Switch>
                 <AuthContextProvider>
-                    <DataContextProvider>
-                        <Route path="/login" exact component={Login} />
-                        <PrivateRoute path="/" exact component={NewDashboard} />
-                    </DataContextProvider>
+                    <Route path="/login" exact component={Login} />
+                    <PrivateRoute path="/" exact component={NewDashboard} />
                 </AuthContextProvider>
             </Switch>
         </Router>
