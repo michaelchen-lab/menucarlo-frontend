@@ -16,4 +16,4 @@ MenuCarlo's frontend is built using `create-react-app` & `React Hooks`, and host
 2. **Data Layer.** REST API calls are handled using `axios` for auth and data retrieval. `React Context` is used for state management. `AuthContext` handles the validation/refreshing of access tokens as mentioned above.
 3. **UI & Visualization.** Since a utility-first approach gives us both the flexibility of CSS and the convenience of UI frameworks, `Tailwind CCS` is used as our UI framework.  All visualizations in MenuCarlo are generated using `Recharts`. 
 
-*Check out the MenuCarlo's backend [here](https://github.com/michaelchen-lab/menucarlo-backend)!*
+*Check out MenuCarlo's backend [here](https://github.com/michaelchen-lab/menucarlo-backend)!*
