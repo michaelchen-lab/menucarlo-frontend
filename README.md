@@ -9,6 +9,16 @@ MenuCarlo helps F&B owners optimize their menu using their historical transactio
 * **Optimize Your Menu.** Learn how you can modify your menu to maximize profits, using custom simulations run for you.
 * **Set and Forget.** Connect to your [Square](https://squareup.com/us/en) account after signing up and never worry about importing data. 
 
+## Demo
+
+![](https://s2.gifyu.com/images/ezgif.com-gif-makerc81254673c52ae87.gif)
+
+https://menucarlo.netlify.app/
+
+Username: `demo`
+
+Password: `demo2021`
+
 ## How It Works
 MenuCarlo's frontend is built using `create-react-app` & `React Hooks`, and hosted with Netlify CDN.
 
